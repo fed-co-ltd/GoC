@@ -1,3 +1,5 @@
+
+
 namespace GoC
 {
     enum GoCTypes
@@ -7,6 +9,22 @@ namespace GoC
     public struct TileLocation
     {
         int x,y;
+    }
+
+    public struct Limit{
+
+        public float x,y;
+
+        public Limit(float _xy)
+        {
+            this.x = _xy;
+            this.y = _xy;
+        }
+        public Limit(float _x, float _y)
+        {
+            this.x = _x;
+            this.y = _y;
+        }
     }
     public class GObject
     {
