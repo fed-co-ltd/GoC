@@ -26,6 +26,7 @@ public class ViewController : MonoBehaviour
         //if (scroll_pos != ScrollPos)
         //{
             ChangeZoomSize(scroll_pos);
+            ChangeCamPos();
         //}
             
     }
@@ -38,4 +39,14 @@ public class ViewController : MonoBehaviour
         zoom_size += Cam.orthographicSize;
         Cam.orthographicSize = Mathf.Clamp(zoom_size, ZoomLimit.x, ZoomLimit.y);
     }
+
+    void ChangeCamPos(){
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log(Screen.width + ", " + Screen.height + ": " Input.mousePosition);
+        }
+    }
+     
 }
+
+   
