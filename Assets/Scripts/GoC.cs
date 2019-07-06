@@ -11,16 +11,16 @@ namespace GoC
         int x,y;
     }
 
-    public struct Limit{
+    public struct Coord{
 
         public float x,y;
 
-        public Limit(float _xy)
+        public Coord(float _xy)
         {
             this.x = _xy;
             this.y = _xy;
         }
-        public Limit(float _x, float _y)
+        public Coord(float _x, float _y)
         {
             this.x = _x;
             this.y = _y;

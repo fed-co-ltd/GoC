@@ -8,13 +8,14 @@ public class ViewController : MonoBehaviour
     Camera Cam;
     Vector2 CamPos;
     float ScrollPos;
-    public Limit ZoomLimit;
+    
+    public Coord ZoomLimit;
     public float ZoomingSpeed;
     
     void Start()
     {
         Cam = gameObject.GetComponent<Camera>();
-        ZoomLimit = new Limit(1,5);
+        ZoomLimit = new Coord(1,5);
         CamPos = transform.position;
         ScrollPos = 0;
     }
@@ -43,7 +44,7 @@ public class ViewController : MonoBehaviour
     void ChangeCamPos(){
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(Screen.width + ", " + Screen.height + ": " Input.mousePosition);
+            Debug.Log(Screen.width + ", " + Screen.height + ": " + Input.mousePosition);
         }
     }
      
