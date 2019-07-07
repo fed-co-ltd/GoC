@@ -7,6 +7,7 @@ public class ViewController : MonoBehaviour
 {
     Vector3 CamPos;
     Vector3 StartTouch;
+    bool isPanAllowed;
     public float ZoomSize;
     public Coord ZoomLimit;
     public float ZoomingSpeed;
@@ -52,6 +53,15 @@ public class ViewController : MonoBehaviour
             var mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var displacement = StartTouch - mouse_pos;
             Camera.main.transform.position += displacement;
+
+        }
+    }
+
+    void OnCollisionEnter(Collision bound)
+    {
+        if (bound.gameObject.tag == "MapBoundary")
+        {
+            
         }
     }
 }
