@@ -5,19 +5,18 @@ using GoC;
 
 public class ViewController : MonoBehaviour
 {
-    Camera Cam;
-    Vector2 CamPos;
-    float ScrollPos;
-    
+    Vector3 CamPos;
+    Vector3 StartTouch;
+    public float ZoomSize;
     public Coord ZoomLimit;
     public float ZoomingSpeed;
     
     void Start()
     {
-        Cam = gameObject.GetComponent<Camera>();
         ZoomLimit = new Coord(1,5);
+       
         CamPos = transform.position;
-        ScrollPos = 0;
+        Camera.main.orthographicSize = ZoomSize;
     }
 
     // Update is called once per frame
@@ -34,20 +33,26 @@ public class ViewController : MonoBehaviour
 
     void ChangeZoomSize(float scroll_pos)
     {
-        ScrollPos = scroll_pos;
         float zoom_size = 0;
-        zoom_size = -scroll_pos * ZoomingSpeed * Time.deltaTime;
-        zoom_size += Cam.orthographicSize;
-        Cam.orthographicSize = Mathf.Clamp(zoom_size, ZoomLimit.x, ZoomLimit.y);
+        zoom_size = Camera.main.orthographicSize;
+        zoom_size += -scroll_pos * ZoomingSpeed * Time.deltaTime;
+        ZoomSize = Mathf.Clamp(zoom_size, ZoomLimit.x, ZoomLimit.y);
+        Camera.main.orthographicSize = ZoomSize;
     }
 
     void ChangeCamPos(){
+        //Vector2 cam_pos;
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(Screen.width + ", " + Screen.height + ": " + Input.mousePosition);
+            StartTouch = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-    }
-     
+
+        if (Input.GetMouseButton(0))
+        {
+            var mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var displacement = StartTouch - mouse_pos;
+            Camera.main.transform.position += displacement;
+        }
 }
 
    
