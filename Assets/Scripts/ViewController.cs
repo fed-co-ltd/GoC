@@ -53,6 +53,7 @@ public class ViewController : MonoBehaviour
             var displacement = StartTouch - mouse_pos;
             Camera.main.transform.position += displacement;
         }
+    }
 }
 
    
