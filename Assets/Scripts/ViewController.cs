@@ -5,6 +5,7 @@ using GoC;
 
 public class ViewController : MonoBehaviour
 {
+    GameObject CamContainer;
     Vector3 CamPos;
     Vector3 StartTouch;
     bool isPanAllowed;
@@ -15,7 +16,7 @@ public class ViewController : MonoBehaviour
     void Start()
     {
         ZoomLimit = new Coord(1,5);
-       
+        CamContainer = this.transform.parent.gameObject;
         CamPos = transform.position;
         Camera.main.orthographicSize = ZoomSize;
     }
@@ -26,13 +27,13 @@ public class ViewController : MonoBehaviour
         var scroll_pos = Input.GetAxis("Mouse ScrollWheel"); // latest scroll position
         //if (scroll_pos != ScrollPos)
         //{
-            ChangeZoomSize(scroll_pos);
-            ChangeCamPos();
+            ZoomView(scroll_pos);
+            PanInMap();
         //}
             
     }
 
-    void ChangeZoomSize(float scroll_pos)
+    void ZoomView(float scroll_pos)
     {
         float zoom_size = 0;
         zoom_size = Camera.main.orthographicSize;
@@ -41,7 +42,7 @@ public class ViewController : MonoBehaviour
         Camera.main.orthographicSize = ZoomSize;
     }
 
-    void ChangeCamPos(){
+    void PanInMap(){
         //Vector2 cam_pos;
         if (Input.GetMouseButtonDown(0))
         {
@@ -52,7 +53,7 @@ public class ViewController : MonoBehaviour
         {
             var mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var displacement = StartTouch - mouse_pos;
-            Camera.main.transform.position += displacement;
+            CamContainer.transform.position += displacement;
 
         }
     }
