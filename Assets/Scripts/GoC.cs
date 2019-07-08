@@ -22,11 +22,8 @@ namespace GoC
         }
         public Limit(float _x, float _y)
         {
-            
             this.x = _x;
             this.y = _y;
-            UnityEngine.Debug.Log(-this.x);
-            UnityEngine.Debug.Log(-this.y);
         }
 
         public bool CompareTo(UnityEngine.Vector3 other){

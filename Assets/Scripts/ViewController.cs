@@ -57,7 +57,6 @@ public class ViewController : MonoBehaviour
             var mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var displacement = StartTouch - mouse_pos;
             var result_cam_pos = cam_pos + displacement;
-            print(result_cam_pos.x);
             if (MapBoundary.CompareTo(result_cam_pos))
             {
                 Camera.main.transform.position += displacement;
