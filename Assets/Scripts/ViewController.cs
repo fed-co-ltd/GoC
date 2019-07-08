@@ -5,18 +5,20 @@ using GoC;
 
 public class ViewController : MonoBehaviour
 {
-    GameObject CamContainer;
     Vector3 CamPos;
     Vector3 StartTouch;
     bool isPanAllowed;
     public float ZoomSize;
-    public Coord ZoomLimit;
+    public float MapBoundaryX;
+    public float MapBoundaryY;
+    Limit ZoomLimit;
+    Limit MapBoundary;
     public float ZoomingSpeed;
     
     void Start()
     {
-        ZoomLimit = new Coord(1,5);
-        CamContainer = this.transform.parent.gameObject;
+        ZoomLimit = new Limit(1,5);
+        MapBoundary = new Limit(MapBoundaryX, MapBoundaryY);
         CamPos = transform.position;
         Camera.main.orthographicSize = ZoomSize;
     }
@@ -27,8 +29,8 @@ public class ViewController : MonoBehaviour
         var scroll_pos = Input.GetAxis("Mouse ScrollWheel"); // latest scroll position
         //if (scroll_pos != ScrollPos)
         //{
-            ZoomView(scroll_pos);
-            PanInMap();
+        ZoomView(scroll_pos);
+        PanInMap();
         //}
             
     }
@@ -51,20 +53,19 @@ public class ViewController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            var cam_pos = Camera.main.transform.position;
             var mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var displacement = StartTouch - mouse_pos;
-            CamContainer.transform.position += displacement;
-
+            var result_cam_pos = cam_pos + displacement;
+            print(result_cam_pos.x);
+            if (MapBoundary.CompareTo(result_cam_pos))
+            {
+                Camera.main.transform.position += displacement;
+            }
         }
     }
 
-    void OnCollisionEnter(Collision bound)
-    {
-        if (bound.gameObject.tag == "MapBoundary")
-        {
-            
-        }
-    }
+   
 }
 
    
