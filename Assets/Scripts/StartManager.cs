@@ -10,6 +10,9 @@ public class StartManager : MonoBehaviour
 {
     public GameObject openStart;
     private Text MusicLabel;
+
+    public GameObject MoreOptions;
+    public Button ShowMoreOptionsButton;
     public void GoToScene(string scene){
         SceneManager.LoadScene(scene);
     }   
@@ -31,5 +34,10 @@ public class StartManager : MonoBehaviour
         Debug.Log("Explicit Exit : " + reason);
         Application.Quit();
 
+    }
+
+    public void ShowMoreOptions(bool isShow){
+        MoreOptions.SetActive(isShow);
+        ShowMoreOptionsButton.gameObject.SetActive(!isShow);
     }
 }
