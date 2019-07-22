@@ -36,6 +36,7 @@ namespace GoC
             return true;
         }
     }
+    
     public class GObject
     {
         protected TileLocation location;
@@ -47,6 +48,7 @@ namespace GoC
         protected int LifePoints;
         protected int Attack;
     }
+    
     public interface ITroopunit 
     {
         int Attack();
