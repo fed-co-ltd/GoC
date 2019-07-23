@@ -7,9 +7,13 @@ namespace GoC
     {
         Hall, EnvironmentFeature, TroopUnit, Resource
     }
-
-    public interface IFader{
-        IEnumerator FadeUIElement(Image element, float start, float end,float delay = 0, float lerpTime = 0.5f);
+    [System.Serializable]
+    public class SaveData {
+        public int SavedInteger;
+        public string SavedString;
+    }
+    public interface ITransition{
+        IEnumerator TransitionUIElement(Image element, float start, float end,float delay = 0, float lerpTime = 0.5f);
     }
     public struct TileLocation
     {

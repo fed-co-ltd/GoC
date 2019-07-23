@@ -8,8 +8,8 @@ public class Splasher : MonoBehaviour
 {
     GameObject container;
     List<GameObject> childrens = new List<GameObject>();
-    IFader ScreenFader;
-    public bool isFadeInOut;
+    ITransition ScreenFader;
+    public bool isFadeInOut = false;
     public float FadeDelay;
     public float FadeDuration;
     public float SplashDelay;
@@ -30,7 +30,7 @@ public class Splasher : MonoBehaviour
     IEnumerator Splash(float delay, float percent){
         yield return new WaitForSeconds(delay);
         container = this.gameObject;
-        ScreenFader = GetComponent<IFader>();
+        ScreenFader = GetComponent<ITransition>();
         for (int i = -1; i < container.transform.childCount; i++)
         {
             var element = container;
@@ -40,7 +40,7 @@ public class Splasher : MonoBehaviour
                 element = childrens[i];
             }
             var elementImage = element.gameObject.GetComponent<Image>();
-            StartCoroutine(ScreenFader.FadeUIElement(elementImage, elementImage.color.a, percent, FadeDelay, FadeDuration));  
+            StartCoroutine(ScreenFader.TransitionUIElement(elementImage, elementImage.color.a, percent, FadeDelay, FadeDuration));  
         }
     }
 

@@ -21,12 +21,24 @@ EditorBuildSettings:
     path: Assets/_Scenes/01c About.unity
     guid: f291b484527384347b4b12f386e7991b
   - enabled: 1
-    path: Assets/_Scenes/02 Actual Game.unity
+    path: Assets/_Scenes/02 Game Players.unity
+    guid: 9f032113d285daa4ea1b4e03dfb90d17
+  - enabled: 1
+    path: Assets/_Scenes/02a Player Name.unity
+    guid: 93ff99cb6dba35049bd1da6b9c32dc06
+  - enabled: 1
+    path: Assets/_Scenes/02b Player Kingdom.unity
+    guid: 9b7e1fe0d86391946ad3a51063c9b58c
+  - enabled: 1
+    path: Assets/_Scenes/03 Loading Screen.unity
+    guid: e33263a4f0d82134bb3f775d9f64753a
+  - enabled: 1
+    path: Assets/_Scenes/04 Actual Game.unity
     guid: 344a6e9c225dec44288a8ce5436639e7
   - enabled: 1
-    path: Assets/_Scenes/03a Win Screen.unity
+    path: Assets/_Scenes/04a Win Screen.unity
     guid: 7fb7ea969fad27b4e86deb4506d11337
   - enabled: 1
-    path: Assets/_Scenes/03b Lose Screen.unity
+    path: Assets/_Scenes/04b Lose Screen.unity
     guid: 6deec30af77c1fd41886635e0035fe17
   m_configObjects: {}

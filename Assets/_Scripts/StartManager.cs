@@ -4,13 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor;
-using UnityEditor.Animations;
 
 public class StartManager : MonoBehaviour
 {
     public GameObject openStart;
     private Text MusicLabel;
-
     public GameObject MoreOptions;
     public Button ShowMoreOptionsButton;
     public void GoToScene(string scene){

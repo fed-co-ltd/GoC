@@ -1,26 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using GoC;
+
 public class ScenesManager : MonoBehaviour
 {
     public float waitingTimeToLoadNextScene;
     public GameObject SplashTransition;
+
+    ITransition fader;
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        fader = GetComponent<ITransition>();
+        if (SceneManager.GetActiveScene().buildIndex > 0)
         {
-            Invoke("GotoNextScene", waitingTimeToLoadNextScene);
-        }else{
             RemoveTransition();
         }
         
     }
 
-    public void LoadScene(string scene){
-        SceneManager.LoadScene(scene);
+
+    public void LoadScene(int buildIndex){
+        StartCoroutine(ShiftScene(buildIndex));
     }
 
+    IEnumerator ShiftScene(int buildIndex){
+        SplashTransition.SetActive(true);
+        var elementImage = SplashTransition.gameObject.GetComponent<Image>();
+        StartCoroutine(fader.TransitionUIElement(elementImage, elementImage.color.a, 1, 0, waitingTimeToLoadNextScene));
+        yield return new WaitForSeconds(waitingTimeToLoadNextScene);
+        SceneManager.LoadScene(buildIndex);  
+    }
     public void GotoNextScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
