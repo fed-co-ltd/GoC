@@ -6,9 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Start.unity
+    path: Assets/_Scenes/00 SplashScreen.unity
+    guid: d18c43fdb1dd1de489c9b953cbf2ec35
+  - enabled: 1
+    path: Assets/_Scenes/01 Start Menu.unity
     guid: c08d1f52ba19d314c95003bb98324d04
   - enabled: 1
-    path: Assets/Scenes/Settings.unity
+    path: Assets/_Scenes/01a Settings.unity
     guid: f3c5854a3f205c14cb6b079db6dff9b3
+  - enabled: 1
+    path: Assets/_Scenes/01b Leaderboard.unity
+    guid: c4fa74e74835e2548bc9a2ab21c01022
+  - enabled: 1
+    path: Assets/_Scenes/01c About.unity
+    guid: f291b484527384347b4b12f386e7991b
+  - enabled: 1
+    path: Assets/_Scenes/02 Actual Game.unity
+    guid: 344a6e9c225dec44288a8ce5436639e7
+  - enabled: 1
+    path: Assets/_Scenes/03a Win Screen.unity
+    guid: 7fb7ea969fad27b4e86deb4506d11337
+  - enabled: 1
+    path: Assets/_Scenes/03b Lose Screen.unity
+    guid: 6deec30af77c1fd41886635e0035fe17
   m_configObjects: {}

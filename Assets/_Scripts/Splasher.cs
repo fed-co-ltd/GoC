@@ -1,0 +1,48 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using GoC;
+
+public class Splasher : MonoBehaviour
+{
+    GameObject container;
+    List<GameObject> childrens = new List<GameObject>();
+    IFader ScreenFader;
+    public bool isFadeInOut;
+    public float FadeDelay;
+    public float FadeDuration;
+    public float SplashDelay;
+    public float SplashTime;
+    void Start()
+    {
+        if (isFadeInOut)
+        {
+            var waitTime = SplashDelay + FadeDelay + FadeDuration + SplashTime;
+            StartCoroutine(Splash(SplashDelay,1));
+            StartCoroutine(Splash(waitTime,0));
+        }else{
+            StartCoroutine(Splash(0,0));
+        }
+        
+    }
+
+    IEnumerator Splash(float delay, float percent){
+        yield return new WaitForSeconds(delay);
+        container = this.gameObject;
+        ScreenFader = GetComponent<IFader>();
+        for (int i = -1; i < container.transform.childCount; i++)
+        {
+            var element = container;
+            if (i > -1)
+            {
+                childrens.Add(container.transform.GetChild(i).gameObject);
+                element = childrens[i];
+            }
+            var elementImage = element.gameObject.GetComponent<Image>();
+            StartCoroutine(ScreenFader.FadeUIElement(elementImage, elementImage.color.a, percent, FadeDelay, FadeDuration));  
+        }
+    }
+
+    
+}

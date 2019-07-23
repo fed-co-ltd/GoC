@@ -1,10 +1,15 @@
-
-
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 namespace GoC
 {
     enum GoCTypes
     {
         Hall, EnvironmentFeature, TroopUnit, Resource
+    }
+
+    public interface IFader{
+        IEnumerator FadeUIElement(Image element, float start, float end,float delay = 0, float lerpTime = 0.5f);
     }
     public struct TileLocation
     {
