@@ -7,11 +7,33 @@ namespace GoC
     {
         Hall, EnvironmentFeature, TroopUnit, Resource
     }
+    public interface Data{
+        bool IsDataInstantiated();
+    }
     [System.Serializable]
-    public class SaveData {
+    public struct SettingsData: Data{
+       
+        bool isDataInstantiated;
+        public float MasterVolume;
+        public float MusicVolume;
+        public float SoundFXVolume;
+        public void SetVolumesData(float a, float b, float c){
+            isDataInstantiated = true;
+            MasterVolume = a;
+            MusicVolume = b;
+            SoundFXVolume = c;
+        }
+        public bool IsDataInstantiated(){
+            return isDataInstantiated;
+        }
+
+    }
+    [System.Serializable]
+    public class GameSaved {
         public int SavedInteger;
         public string SavedString;
     }
+    
     public interface ITransition{
         IEnumerator TransitionUIElement(Image element, float start, float end,float delay = 0, float lerpTime = 0.5f);
     }

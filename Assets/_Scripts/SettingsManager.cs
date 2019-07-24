@@ -9,17 +9,15 @@ public class SettingsManager : MonoBehaviour {
     public static float SoundFXVolume = 1f;
 
     void Start () {
-        if (SceneManager.GetActiveScene ().buildIndex == 2) {
-            var startManager = GameObject.Find ("*Scene Manager").GetComponentInChildren<StartManager> ();
-
-        }
+        GameManager.LoadSettingsData();
     }
-    static void UpdateVolume () {
+    public static void UpdateVolume () {
         if (GameManager.instance != null) {
             var musicPLayer = GameObject.Find ("*Music Player");
             var audio = musicPLayer.GetComponentInChildren<AudioSource> ();
             audio.volume = MasterVolume * MusicVolume;
         }
+        GameManager.SaveSettingsData();
 
     }
     public static void ChangeMusicVolume (float size) {
