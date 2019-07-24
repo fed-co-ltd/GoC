@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour {
             instance = this;
             GameObject.DontDestroyOnLoad (gameObject);
         }
-        Debug.Log(SavePath_Settings);
     }
 
     static void SaveData (string savePath, object saved) {
