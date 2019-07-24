@@ -1,36 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    public Text ProgressReport;
-    float mapProgress = 0;
-    void Start()
-    {
-        StartCoroutine(UpdateProgress());
-    }
-
-    void Update(){
-        if (mapProgress < 20 || mapProgress > 35 )
+public class GameManager : MonoBehaviour {
+    public static GameManager instance = null;
+    void Awake () {
+        if (instance != null)
         {
-            ProgressReport.text = "Creating Tile Map     " + mapProgress.ToString() + "% ";
+            Destroy(gameObject);
+        }else{
+            instance = this;
+            GameObject.DontDestroyOnLoad(gameObject);
         }
     }
 
-    // Update is called once per frame
-    IEnumerator UpdateProgress(){
-        while (mapProgress < 100)
-        {
-            mapProgress += 1;
-            yield return new WaitForSeconds(0.1f);
-        }
-        StartGame();
-    }
-    void StartGame(){
-        SceneManager.LoadScene(9);
-    }
 }
