@@ -9,15 +9,24 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
+    private static string SavePath_directory;
     private static string SavePath_Settings;
     void Awake () {
-        SavePath_Settings = Application.persistentDataPath + "/settings_data.save";
+        SavePath_directory = Application.persistentDataPath + "/saves/";
+
+        if (!Directory.Exists(SavePath_directory))
+        {
+            Directory.CreateDirectory(SavePath_directory);
+        }
+
+        SavePath_Settings = SavePath_directory + "settings_data.save";
         if (instance != null) {
             Destroy (gameObject);
         } else {
             instance = this;
             GameObject.DontDestroyOnLoad (gameObject);
         }
+        Debug.Log(SavePath_Settings);
     }
 
     static void SaveData (string savePath, object saved) {
