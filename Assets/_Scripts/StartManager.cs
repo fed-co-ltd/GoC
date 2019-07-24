@@ -8,7 +8,6 @@ using UnityEditor;
 public class StartManager : MonoBehaviour
 {
     public GameObject openStart;
-    private Text MusicLabel;
     public GameObject MoreOptions;
     public Button ShowMoreOptionsButton;
     public void GoToScene(string scene){
@@ -18,14 +17,6 @@ public class StartManager : MonoBehaviour
     public void ShowStart(bool isShow){
         var controller = openStart.GetComponentInChildren<Animator>();
         controller.SetBool("open", isShow);
-    }
-
-    public void ChangeGameMusicLabel(Text label){
-        MusicLabel = label;
-    }
-
-    public void ChangeGameMusicLabelValue(Slider slider){
-        MusicLabel.text = slider.value.ToString();
     }
 
     public void ExitGame(string reason){
@@ -38,4 +29,5 @@ public class StartManager : MonoBehaviour
         MoreOptions.SetActive(isShow);
         ShowMoreOptionsButton.gameObject.SetActive(!isShow);
     }
+    
 }

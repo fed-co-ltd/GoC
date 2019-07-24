@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 883329}
   - component: {fileID: 883333}
   m_Layer: 0
-  m_Name: ScenesManager
+  m_Name: '*Scene Manager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,9 +196,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 883328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6e42d02f47f0c745bb7a7411dbbc39b, type: 3}
+  m_Script: {fileID: 11500000, guid: b40d24c25bfc96b4d88c744c812d2b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameMusic: {fileID: 8300000, guid: 9ed0e152a3d0bbe46baa255bc5807b24, type: 3}
   ProgressReport: {fileID: 1139524054}
 --- !u!1 &464676614
 GameObject:
@@ -514,7 +515,7 @@ GameObject:
   - component: {fileID: 1650375851}
   - component: {fileID: 1650375850}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Loading Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

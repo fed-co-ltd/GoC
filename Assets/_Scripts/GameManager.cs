@@ -1,36 +1,67 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using GoC;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    public Text ProgressReport;
-    float mapProgress = 0;
-    void Start()
-    {
-        StartCoroutine(UpdateProgress());
-    }
+public class GameManager : MonoBehaviour {
+    public static GameManager instance = null;
+    private static string SavePath_directory;
+    private static string SavePath_Settings;
+    void Awake () {
+        SavePath_directory = Application.persistentDataPath + "/saves/";
 
-    void Update(){
-        if (mapProgress < 20 || mapProgress > 35 )
+        if (!Directory.Exists(SavePath_directory))
         {
-            ProgressReport.text = "Creating Tile Map     " + mapProgress.ToString() + "% ";
+            Directory.CreateDirectory(SavePath_directory);
+        }
+
+        SavePath_Settings = SavePath_directory + "settings_data.save";
+        if (instance != null) {
+            Destroy (gameObject);
+        } else {
+            instance = this;
+            GameObject.DontDestroyOnLoad (gameObject);
         }
     }
 
-    // Update is called once per frame
-    IEnumerator UpdateProgress(){
-        while (mapProgress < 100)
-        {
-            mapProgress += 1;
-            yield return new WaitForSeconds(0.1f);
+    static void SaveData (string savePath, object saved) {
+       
+            var binaryFormatter = new BinaryFormatter ();
+            using (var fileStream = File.Create (savePath)) {
+                binaryFormatter.Serialize (fileStream, saved);
+            }
+
+    }
+
+    public static void SaveSettingsData () {
+        var save = new SettingsData ();
+        save.SetVolumesData (SettingsManager.MasterVolume,
+            SettingsManager.MusicVolume,
+            SettingsManager.SoundFXVolume);
+        SaveData (SavePath_Settings, save);
+    }
+
+        
+    public static void LoadSettingsData () {
+        SettingsData save = new SettingsData ();
+        if (File.Exists (SavePath_Settings)) {
+            var binaryFormatter = new BinaryFormatter ();
+            using (var fileStream = File.Open (SavePath_Settings, FileMode.Open)) {
+                save = (SettingsData) binaryFormatter.Deserialize (fileStream);
+            }
+        } else {
+            Debug.LogWarning ("Save file doesn't exist.");
         }
-        StartGame();
+    
+        SettingsManager.MasterVolume = save.MasterVolume;
+        SettingsManager.MusicVolume = save.MusicVolume;
+        SettingsManager.SoundFXVolume = save.SoundFXVolume;
+        SettingsManager.UpdateVolume ();
+
     }
-    void StartGame(){
-        SceneManager.LoadScene(9);
-    }
+
 }

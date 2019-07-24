@@ -47,6 +47,11 @@ public class ScenesManager : MonoBehaviour
         removable.SetActive(false);
     }
 
-
+    public void ChangeMusic(AudioClip clip){
+        var player = GameObject.Find("*Music Player");
+        AudioSource MusicPlayer = player.GetComponentInChildren<AudioSource>();
+        MusicPlayer.clip = clip;
+        MusicPlayer.Play();
+    }
     
 }
