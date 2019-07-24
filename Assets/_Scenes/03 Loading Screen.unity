@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 883329}
   - component: {fileID: 883333}
   m_Layer: 0
-  m_Name: ScenesManager
+  m_Name: '*Scene Manager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 1650375851}
   - component: {fileID: 1650375850}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Loading Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -33,7 +33,7 @@ public class GameLoader : MonoBehaviour
     }
     void StartGame(){
         SceneManager.LoadScene(9);
-        var player = GameObject.Find("Music Player");
+        var player = GameObject.Find("*Music Player");
         AudioSource MusicPlayer = player.GetComponentInChildren<AudioSource>();
         MusicPlayer.clip = GameMusic;
         MusicPlayer.Play();

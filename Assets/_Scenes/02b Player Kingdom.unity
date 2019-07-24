@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 228830070}
   - component: {fileID: 228830069}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Player Kingdom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1287,7 +1287,7 @@ GameObject:
   - component: {fileID: 1282826445}
   - component: {fileID: 1282826444}
   m_Layer: 0
-  m_Name: ScenesManager
+  m_Name: '*Scene Manager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

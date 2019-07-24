@@ -995,7 +995,7 @@ GameObject:
   - component: {fileID: 1890487214}
   - component: {fileID: 1890487213}
   m_Layer: 0
-  m_Name: '*Scenes Manager'
+  m_Name: '*Scene Manager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1041,7 +1041,7 @@ GameObject:
   - component: {fileID: 1942142218}
   - component: {fileID: 1942142219}
   m_Layer: 0
-  m_Name: Music Player
+  m_Name: '*Music Player'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

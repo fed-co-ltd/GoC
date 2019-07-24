@@ -10,13 +10,13 @@ public class SettingsManager : MonoBehaviour {
 
     void Start () {
         if (SceneManager.GetActiveScene ().buildIndex == 2) {
-            var startManager = GameObject.Find ("*Scenes Manager").GetComponentInChildren<StartManager> ();
+            var startManager = GameObject.Find ("*Scene Manager").GetComponentInChildren<StartManager> ();
 
         }
     }
     static void UpdateVolume () {
         if (GameManager.instance != null) {
-            var musicPLayer = GameObject.Find ("Music Player");
+            var musicPLayer = GameObject.Find ("*Music Player");
             var audio = musicPLayer.GetComponentInChildren<AudioSource> ();
             audio.volume = MasterVolume * MusicVolume;
         }

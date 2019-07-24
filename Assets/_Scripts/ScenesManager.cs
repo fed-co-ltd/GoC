@@ -48,7 +48,7 @@ public class ScenesManager : MonoBehaviour
     }
 
     public void ChangeMusic(AudioClip clip){
-        var player = GameObject.Find("Music Player");
+        var player = GameObject.Find("*Music Player");
         AudioSource MusicPlayer = player.GetComponentInChildren<AudioSource>();
         MusicPlayer.clip = clip;
         MusicPlayer.Play();

@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 56778295}
   - component: {fileID: 56778294}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Leaderboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -946,7 +946,7 @@ GameObject:
   - component: {fileID: 878768132}
   - component: {fileID: 878768135}
   m_Layer: 0
-  m_Name: ScenesManager
+  m_Name: '*Scene Manager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

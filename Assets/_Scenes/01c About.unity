@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 568228691}
   - component: {fileID: 568228690}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: About
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 1894025507}
   - component: {fileID: 1894025506}
   m_Layer: 0
-  m_Name: ScenesManager
+  m_Name: '*Scene Manager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
