@@ -6,11 +6,13 @@ using GoC;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Data.SQLite;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     private static string SavePath_directory;
     private static string SavePath_Settings;
+    public SQLiteConnection s;
     void Awake () {
         SavePath_directory = Application.persistentDataPath + "/saves/";
 
