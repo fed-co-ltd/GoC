@@ -1804,7 +1804,7 @@ MonoBehaviour:
         m_MethodName: ChangeMusic
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 9ed0e152a3d0bbe46baa255bc5807b24,
+          m_ObjectArgument: {fileID: 8300000, guid: df6056ee1a0615743a8d429a59f6b842,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
@@ -2708,7 +2708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2018040606
 RectTransform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 namespace GoC
@@ -11,7 +13,7 @@ namespace GoC
         bool IsDataInstantiated();
     }
     [System.Serializable]
-    public struct SettingsData: Data{
+    public class SettingsData: Data{
        
         bool isDataInstantiated;
         public float MasterVolume;
@@ -34,6 +36,40 @@ namespace GoC
         public string SavedString;
     }
     
+    public class PlayerData: Data{
+        bool isDataInstantiated;
+        public string Name;
+        public string Password;
+        public DateTime playDate;
+        public string Kingdom;
+        public void Store(string name, string pass, DateTime date){
+            isDataInstantiated = true;
+            Name = name;
+            Password = pass;
+            playDate = date;
+        }
+        public bool IsDataInstantiated()
+        {
+            return isDataInstantiated;
+        }
+    }
+    public class Players{
+        List<PlayerData> Data;
+        public int Count;
+        public Players(){
+            Count = 0;
+            Data = new List<PlayerData>();
+        }
+        public void Add(PlayerData data){
+            ++Count;
+            Data.Add(data);
+        }
+
+        public PlayerData this[int index]{
+            get { return Data[index];}
+            set { Data[index] = value;}
+        }
+    }
     public interface ITransition{
         IEnumerator TransitionUIElement(Image element, float start, float end,float delay = 0, float lerpTime = 0.5f);
     }

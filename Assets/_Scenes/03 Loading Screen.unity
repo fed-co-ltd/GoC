@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40d24c25bfc96b4d88c744c812d2b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameMusic: {fileID: 8300000, guid: 9ed0e152a3d0bbe46baa255bc5807b24, type: 3}
+  GameMusic: {fileID: 8300000, guid: 634dfeeba445ed4448308fd998adf598, type: 3}
   ProgressReport: {fileID: 1139524054}
 --- !u!1 &464676614
 GameObject:
@@ -778,7 +778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2052750084
 RectTransform:
   m_ObjectHideFlags: 0
