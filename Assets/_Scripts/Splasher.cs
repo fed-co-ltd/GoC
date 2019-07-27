@@ -28,6 +28,7 @@ public class Splasher : MonoBehaviour
     }
 
     IEnumerator Splash(float delay, float percent){
+
         yield return new WaitForSeconds(delay);
         container = this.gameObject;
         ScreenFader = GetComponent<ITransition>();
