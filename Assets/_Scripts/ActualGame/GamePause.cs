@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GamePause : MonoBehaviour
-{
+public class GamePause : MonoBehaviour {
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    public Image hexagonPause;
+    void OnMouseOver () {
+        Debug.Log("hello");
+        hexagonPause.gameObject.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void OnMouseExit(){
+        Debug.Log("hello2");
     }
 }

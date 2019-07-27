@@ -71,7 +71,7 @@ namespace GoC
         }
     }
     public interface ITransition{
-        IEnumerator TransitionUIElement(Image element, float start, float end,float delay = 0, float lerpTime = 0.5f);
+        IEnumerator TransitionUIElement(MaskableGraphic element, float start, float end,float delay = 0, float lerpTime = 0.5f);
     }
     public struct TileLocation
     {

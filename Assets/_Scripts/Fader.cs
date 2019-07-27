@@ -7,7 +7,7 @@ public class Fader : MonoBehaviour, ITransition
 {
     // Start is called before the first frame update
 
-    public IEnumerator TransitionUIElement(Image element, float start, float end,float delay = 0, float lerpTime = 0.5f){
+    public IEnumerator TransitionUIElement(MaskableGraphic element, float start, float end,float delay = 0, float lerpTime = 0.5f){
         float timeStartedLerping = Time.time;
         float timeSinceStarted = Time.time - timeStartedLerping;
         float percentageComplete = timeSinceStarted / lerpTime;
