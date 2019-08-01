@@ -6,12 +6,14 @@ using System.IO;
 using System.Security.AccessControl;
 using Mono.Data.Sqlite;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
 
-public class DataSaver {
+public class DataSaver{
     private string ConnectionString;
     private string SavePathDirectory;
     private string DBfileName;
-    private SqliteConnection DBconnection;
+    private IDbConnection  DBconnection;
     private string DBcommandText;
     public DataSaver () {
         SavePathDirectory = Application.persistentDataPath + "/saves/";
@@ -25,9 +27,9 @@ public class DataSaver {
         return this;
     }
     public DataSaver Open () {
-        ConnectionString = "Data Source=" + SavePathDirectory + DBfileName;
-        if (!System.IO.File.Exists (SavePathDirectory + DBfileName)) {
-            CreateDataBase (SavePathDirectory + DBfileName);
+        ConnectionString = "URI=file:" + SavePathDirectory + DBfileName;
+        if (!File.Exists (SavePathDirectory + DBfileName)) {
+            CreateDataBase (DBfileName);
         }
         DBconnection = new SqliteConnection (ConnectionString);
         DBconnection.Open ();
@@ -35,14 +37,28 @@ public class DataSaver {
     }
 
     public void CreateDataBase (string fileName) {
-        FileStream file = new FileStream(fileName,
+        /* FileStream file = new FileStream(fileName,
                                          FileMode.Create,
                                          FileAccess.ReadWrite,
                                          FileShare.ReadWrite,
                                          4096,
                                          true
-                                         );
-        file.Close();
+        );
+        file.Close();*/
+        //StartCoroutine(StartTimer());
+        WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/saves/" + fileName);
+        Debug.Log("to load ...");
+        while (!loadDB.isDone) {
+            Debug.Log("loading ...");
+         }
+         
+        // then save to Application.persistentDataPath
+        File.WriteAllBytes(SavePathDirectory + DBfileName, loadDB.bytes);
+    }
+
+    int TimerSpan(DateTime start){
+        TimeSpan span = DateTime.Now - start;
+        return span.Seconds;
     }
 
     public void Close () {
@@ -50,7 +66,7 @@ public class DataSaver {
     }
 
     public IDataReader Select (string command) {
-        using (SqliteCommand cmd = DBconnection.CreateCommand ()) {
+        using (IDbCommand cmd = DBconnection.CreateCommand ()) {
             DBcommandText = "SELECT " + command;
             cmd.CommandText = DBcommandText;
             var reader = cmd.ExecuteReader ();
@@ -60,7 +76,7 @@ public class DataSaver {
     }
 
     public bool Insert (string command) {
-        using (SqliteCommand cmd = DBconnection.CreateCommand ()) {
+        using (IDbCommand cmd = DBconnection.CreateCommand ()) {
             DBcommandText = "INSERT INTO " + command;
             cmd.CommandText = DBcommandText;
             if (cmd.ExecuteNonQuery () > 0) {
@@ -70,8 +86,8 @@ public class DataSaver {
         }
     }
 
-    public bool Update (string command) {
-        using (SqliteCommand cmd = DBconnection.CreateCommand ()) {
+    public bool UpdateData (string command) {
+        using (IDbCommand cmd = DBconnection.CreateCommand ()) {
             DBcommandText = "UPDATE " + command;
             cmd.CommandText = DBcommandText;
             if (cmd.ExecuteNonQuery () > 0) {
@@ -82,7 +98,7 @@ public class DataSaver {
     }
 
     public void CreateTable (string command) {
-        using (SqliteCommand cmd = DBconnection.CreateCommand ()) {
+        using (IDbCommand cmd = DBconnection.CreateCommand ()) {
             DBcommandText = "CREATE TABLE IF NOT EXISTS " + command;
             cmd.CommandText = DBcommandText;
             cmd.ExecuteNonQuery();

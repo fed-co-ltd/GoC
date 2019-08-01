@@ -30,19 +30,13 @@ namespace GoC
         }
 
     }
-    [System.Serializable]
-    public class GameSaved {
-        public int SavedInteger;
-        public string SavedString;
-    }
-    
     public class PlayerData: Data{
         bool isDataInstantiated;
         public string Name;
         public string Password;
-        public DateTime playDate;
+        public int playDate;
         public string Kingdom;
-        public void Store(string name, string pass, DateTime date){
+        public void Store(string name, string pass, int date){
             isDataInstantiated = true;
             Name = name;
             Password = pass;
@@ -63,6 +57,26 @@ namespace GoC
         public void Add(PlayerData data){
             ++Count;
             Data.Add(data);
+        }
+
+        public void RemoveLast(){
+            Data.RemoveAt(Count-1);
+            --Count;
+        }
+
+        public void RemoveAll(){
+            Data.RemoveRange(0,Count);
+            Count = 0;
+        }
+        public bool IsPlayerExist(string name){
+            foreach (var player in Data)
+            {
+                if (player.Name == name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public PlayerData this[int index]{

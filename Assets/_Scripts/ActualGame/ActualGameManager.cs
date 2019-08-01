@@ -4,22 +4,27 @@ using GoC;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ActualGameManager : MonoBehaviour
-{
+public class ActualGameManager : MonoBehaviour {
     // Start is called before the first frame update
-    public Image pauseImage;
-    public Text timerText;
-    ITransition Fader;
+  
+    
+    public Grid grid;
+    public static int playerTurn = 0;
+    void Start () {
+    }
 
-    void Start(){
-        Fader = GetComponent<Fader>();
+    void Awake(){
+
     }
-    public void HoverPauseGame(){
-        StartCoroutine(Fader.TransitionUIElement(timerText, pauseImage.color.a, 0, 0,0.75f));  
-        StartCoroutine(Fader.TransitionUIElement(pauseImage, pauseImage.color.a, 1, 0));  
+
+    void Update () {
+        if (Input.GetMouseButtonDown (0)) {
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+            Vector3Int coordinate = grid.WorldToCell (mouseWorldPos);
+            Debug.Log (coordinate);
+        }
     }
-    public void ExitHoverPauseGame(){
-        StartCoroutine(Fader.TransitionUIElement(pauseImage, pauseImage.color.a, 0, 0,0.75f));  
-        StartCoroutine(Fader.TransitionUIElement(timerText, pauseImage.color.a, 1, 0.5f,1));  
-    }
+
+
+    
 }

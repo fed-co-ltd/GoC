@@ -12,6 +12,7 @@ public class Splasher : MonoBehaviour
     public bool isFadeInOut = false;
     public float FadeDelay;
     public float FadeDuration;
+    public float FadeEnd = 0;
     public float SplashDelay;
     public float SplashTime;
     void Start()
@@ -22,7 +23,7 @@ public class Splasher : MonoBehaviour
             StartCoroutine(Splash(SplashDelay,1));
             StartCoroutine(Splash(waitTime,0));
         }else{
-            StartCoroutine(Splash(0,0));
+            StartCoroutine(Splash(0,FadeEnd));
         }
         
     }

@@ -28,8 +28,8 @@ public class ScenesManager : MonoBehaviour {
         SplashTransition.SetActive (true);
         var elementImage = SplashTransition.gameObject.GetComponent<Image> ();
         StartCoroutine (fader.TransitionUIElement (elementImage, elementImage.color.a, 1, 0, waitingTimeToLoadNextScene));
-        yield return new WaitForSeconds (waitingTimeToLoadNextScene);
-        SceneManager.LoadScene (buildIndex);
+        yield return new WaitForSeconds(waitingTimeToLoadNextScene);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync (buildIndex);
     }
     public void GotoNextScene () {
         SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
