@@ -45,3 +45,21 @@ TagManager:
   - name: Terrain
     uniqueID: 1794737967
     locked: 0
+  - name: Resource
+    uniqueID: 756091139
+    locked: 0
+  - name: Environment
+    uniqueID: 359204425
+    locked: 0
+  - name: Structure
+    uniqueID: 3120347853
+    locked: 0
+  - name: Troop
+    uniqueID: 4100394055
+    locked: 0
+  - name: Outline
+    uniqueID: 3124854289
+    locked: 0
+  - name: Fog
+    uniqueID: 3158791823
+    locked: 0
