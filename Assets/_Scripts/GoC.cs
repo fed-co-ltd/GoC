@@ -4,12 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 namespace GoC {
-    enum GoCTypes {
-        Hall,
-        EnvironmentFeature,
-        TroopUnit,
-        Resource
-    }
     public interface Data {
         bool IsDataInstantiated ();
     }
@@ -112,10 +106,9 @@ namespace GoC {
             this.y = _y;
         }
 
-        public bool CompareTo (UnityEngine.Vector3 other) {
-            var isX = (other.x > this.x) || (other.x < -this.x);
-            var isY = (other.y > this.y) || (other.y < -this.y);
-            if (isX || isY) {
+        public bool CompareTo (float other) {
+            var isX = (other < this.x) || (other > this.y);
+            if (isX) {
                 return false;
             }
             return true;

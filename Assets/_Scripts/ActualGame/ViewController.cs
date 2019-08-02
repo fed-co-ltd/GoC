@@ -9,16 +9,21 @@ public class ViewController : MonoBehaviour
     Vector3 StartTouch;
     bool isPanAllowed;
     public float ZoomSize;
-    public float MapBoundaryX;
-    public float MapBoundaryY;
+    public float MapBoundaryX1;
+    public float MapBoundaryX2;
+    public float MapBoundaryY1;
+    public float MapBoundaryY2;
     Limit ZoomLimit;
-    Limit MapBoundary;
+    Limit _MapBoundaryX;
+    Limit _MapBoundaryY;
+
     public float ZoomingSpeed;
     
     void Start()
     {
         ZoomLimit = new Limit(1,5);
-        MapBoundary = new Limit(MapBoundaryX, MapBoundaryY);
+        _MapBoundaryX = new Limit(MapBoundaryX1, MapBoundaryX2);
+        _MapBoundaryY = new Limit(MapBoundaryY1, MapBoundaryY2);
         CamPos = transform.position;
         Camera.main.orthographicSize = ZoomSize;
     }
@@ -29,7 +34,7 @@ public class ViewController : MonoBehaviour
         var scroll_pos = Input.GetAxis("Mouse ScrollWheel"); // latest scroll position
         //if (scroll_pos != ScrollPos)
         //{
-        ZoomView(scroll_pos);
+        //ZoomView(scroll_pos);
         PanInMap();
         //}
             
@@ -57,10 +62,36 @@ public class ViewController : MonoBehaviour
             var mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var displacement = StartTouch - mouse_pos;
             var result_cam_pos = cam_pos + displacement;
-            if (MapBoundary.CompareTo(result_cam_pos))
+            
+            if (!_MapBoundaryX.CompareTo(result_cam_pos.x) || !_MapBoundaryY.CompareTo(result_cam_pos.y))
             {
                 Camera.main.transform.position += displacement;
+                var reqx = Mathf.Clamp(cam_pos.x, _MapBoundaryX.x,_MapBoundaryX.y);
+                var reqy = Mathf.Clamp(cam_pos.y, _MapBoundaryY.x,_MapBoundaryY.y);
+                var req = new Vector3(reqx, reqy, cam_pos.z);
+                StartCoroutine(GoBack(req));
+            }else{
+                Camera.main.transform.position += displacement;
             }
+        }
+    }
+
+    public IEnumerator GoBack(Vector3 req,float lerpTime = 0.5f){
+        Vector3 end = req;
+        Vector3 start = transform.position;
+        float z = transform.position.z;
+        float timeStartedLerping = Time.time;
+        float timeSinceStarted = Time.time - timeStartedLerping;
+        float percentageComplete = timeSinceStarted / lerpTime;
+        while (true)
+        {
+            timeSinceStarted = Time.time - timeStartedLerping;
+            percentageComplete = timeSinceStarted / lerpTime;
+            var currentX = Mathf.Lerp(start.x, end.x, percentageComplete);
+            var currentY = Mathf.Lerp(start.y, end.y, percentageComplete);
+            transform.position = new Vector3(currentX, currentY, z);
+            if (percentageComplete >= 1)break;
+            yield return new WaitForEndOfFrame();
         }
     }
 }
