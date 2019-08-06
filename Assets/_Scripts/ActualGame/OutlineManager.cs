@@ -7,6 +7,9 @@ namespace GoC {
         protected TileBase Tile;
         protected Tilemap OutlineMap;
         protected Vector3Int[] HexPos = new Vector3Int[7];
+        public Vector3Int[] GetHexPos(){
+            return HexPos;
+        }
         public static void ClearMapOutlines (Tilemap map, int[] pattern) {
             for (int x = pattern[0]; x <= pattern[1]; x++) {
                 for (int y = pattern[2]; y <= pattern[3]; y++) {
@@ -29,7 +32,11 @@ namespace GoC {
             for (int i = 0; i < HexPos.Length; i++)
             {
                 if (i == 3) continue;
-                OutlineMap.SetTile (HexPos[i], Tile);
+                if (HexPos[i].x > -1 && HexPos[i].x < 18 && HexPos[i].y > -1 && HexPos[i].y < 18 )
+                {
+                    OutlineMap.SetTile (HexPos[i], Tile);
+                }
+                ActualGameManager.OutlineMap.Add(HexPos[i], true);
             }
         }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tileWater_full
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 06e585d58af132946a5ba569ad9a3264, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9607843}
   m_Transform:
     e00: 1
     e01: 0

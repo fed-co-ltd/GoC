@@ -40,7 +40,7 @@ namespace GoC {
         public string Name;
         public string Password;
         public int playDate;
-        public string Kingdom;
+        public int Kingdom;
         public void Store (string name, string pass, int date) {
             isDataInstantiated = true;
             Name = name;

@@ -6,9 +6,16 @@ using UnityEngine.Tilemaps;
 public class WorldCollections : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Sprite[] Resource;
-    public Sprite[] Structures;
-    public TileBase[] TerrainTiles;
+    public Tilemap[] Layers;
+    public TileBase[] GroundTile;
+    public TileBase[] WoodResource;
+    public TileBase[] StoneResource;
+    public TileBase[] BaseStructures;
+    public TileBase[] HouseStructures;
+    public TileBase[] FloorTiles;
+    public TileBase[] Decorations;
+    public TileBase OutlineTile;
+    public Color[] OutlineColors;
     void Start()
     {
         

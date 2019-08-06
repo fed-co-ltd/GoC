@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public static int numPlayers = 2;
     public static int playerIteration = 0;
     public static bool isNumPlayerChosen = false;
+    public static bool isOutlineShown = false;
     public static Text Log;
     void Awake () {
         Serializer.SavePathDirectory = Application.persistentDataPath + "/saves/";

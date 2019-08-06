@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using GoC;
 
 public class PlayerDataSaver : MonoBehaviour {
     public InputField NameField;
@@ -198,23 +199,8 @@ public class PlayerDataSaver : MonoBehaviour {
                 panel.color = ActivePanelColor;
             }
         }
-        switch (num) {
-            case 1:
-                kingdomTypeName = "Q";
-                break;
-            case 2:
-                kingdomTypeName = "W";
-                break;
-            case 3:
-                kingdomTypeName = "E";
-                break;
-            case 4:
-                kingdomTypeName = "R";
-                break;
-            default:
-                kingdomTypeName = "default";
-                break;
-        }
+        kingdomTypeName = ((Kingdom) num).ToString();
+        GameManager.GetActivePlayer().Kingdom = num;
     }
     public void StorePDataKingdom () {
         GameManager.ChangeKingdom (kingdomTypeName);
